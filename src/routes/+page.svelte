@@ -5,11 +5,13 @@
   let Goals;
   let UserGoals;
   let Users;
+  let PersonalGoals;
   onMount(async () => {
     try {
       Goals = await fetchData("goals");
       Users = await fetchData("users");
       UserGoals = await fetchData("userGoals");
+      PersonalGoals = await fetchData("personalGoals")
       console.log({ Goals, Users, UserGoals });
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -105,21 +107,23 @@
       </div>
     </div>
   {/each}
-  <!-- to be component persoonlijk doel -->
-  <!-- <div class="bg-gray-300 mt-2 w-full rounded-md p-2">
+
+   {#each PersonalGoals as PersonalGoal}
+  <div class="bg-gray-300 mt-2 w-full rounded-md p-2">
     <div class="flex items-center justify-between mb-2">
-      <p class="text-blue-800 font-semibold">[doel.beschrijving]</p>
+      <p class="text-blue-800 font-semibold">{PersonalGoal.omschrijving}</p>
       <div class="flex">
         <p
           class="bg-indigo-800 text-white text-sm py-1 px-3 mr-2 rounded-md border-4 border-blue-400"
         >
           Claim
         </p>
-        <p
+        <a
           class="bg-indigo-800 text-white text-sm py-1 px-3 rounded-md border-4 border-blue-400"
+          href="/editDoel/{PersonalGoal.id}"
         >
           Edit
-        </p>
+      </a>
       </div>
     </div>
     <div class="bg-blue-400 p-2 rounded-md flex">
@@ -127,11 +131,14 @@
         <p
           class="absolute inset-0 flex items-center justify-center text-white font-bold"
         >
-          3/3
+          {PersonalGoal.progress}/{PersonalGoal.goal}
         </p>
-        <div class="bg-indigo-800 h-full rounded-md" style="width: 100%;"></div>
+        <div class="bg-indigo-800 h-full rounded-md" 
+        style="width: {(PersonalGoal.progress / PersonalGoal.goal) * 100}%;"
+        ></div>
       </div>
       <p class="text-white ml-2 whitespace-nowrap">5 coins</p>
     </div>
-  </div> -->
+  </div>
+  {/each}
 </div>

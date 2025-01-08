@@ -160,7 +160,7 @@
   <div
     class="bg-red-700 mt-2 mr-2 w-min py-2 px-10 rounded-md border-4 border-blue-400 whitespace-nowrap"
   >
-    <a href="../" class="text-white font-semibold">Cancel</a>
+    <a href="../" class="text-white font-semibold">Home</a>
   </div>
   <div
     class="bg-green-700 mt-2 w-min py-2 px-10 rounded-md border-4 border-blue-400 whitespace-nowrap"
